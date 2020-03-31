@@ -17,7 +17,6 @@ jobs:
       matrix:
         os: [ubuntu-16.04, ubuntu-latest, windows-latest, macos-latest]
         java: [8, 9, 10, 11]
-        architecture: [x64, x86]
 
     steps:
     - uses: actions/checkout@v2
@@ -25,7 +24,6 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: ${{ matrix.java }}
-        architecture: ${{ matrix.architecture }}
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Cache Gradle packages
@@ -39,5 +37,5 @@ jobs:
       run: ./gradlew build
     - uses: actions/upload-artifact@v1
       with:
-        name: Package
+        name: test-artifact
         path: build/libs
